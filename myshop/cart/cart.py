@@ -1,6 +1,7 @@
 from django.conf import settings
 from decimal import Decimal
-from myshop.shop.models import Product
+
+from shop.models import Product
 
 
 class Cart(object):
@@ -16,7 +17,7 @@ class Cart(object):
 
         product_ids = self.cart.keys()
 
-        products = Product.objects.filter(id_in=product_ids)
+        products = Product.objects.filter(id__in=product_ids)
         for product in products:
             self.cart[str(product.id)]['product'] = product
 
