@@ -14,15 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf import settings
-from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.urls import re_path
+
+from myshop.orders import
+from myshop import cart
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^cart/', include('cart.urls', namespace='cart')),
-    url(r'^orders/', include('orders.urls', namespace='orders')),
-    url(r'^', include('shop.urls', namespace='shop'))
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^cart/', cart.urls),
+    re_path(r'^orders/', orders.urls),
+    re_path(r'^', shop.urls)
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
